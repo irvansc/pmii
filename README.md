@@ -49,28 +49,8 @@ Password : password
 Username : user@gmail.com
 Password : password
 
-## Login Page
-![image](https://github.com/suryadi445/starter-laravel-10-ui/assets/68637256/c260e235-26ed-492d-89e4-a02a47b1aa7c)
-
-
-## Register Page 
-![image](https://github.com/suryadi445/starter-laravel-10-ui/assets/68637256/16d566a3-45c7-4066-9f2f-7ebb44f453a6)
-
-## Dashboard Page
-![image](https://github.com/suryadi445/starter-laravel-10-ui/assets/68637256/ead594a9-1836-4fe0-98d1-38f02353d23b)
-
-## Role Page 
-![image](https://github.com/suryadi445/starter-laravel-10-ui/assets/68637256/45fe1acf-01b7-4ac7-8c05-63d07ebe6781)
-
-## Permission Page
-![image](https://github.com/suryadi445/starter-laravel-10-ui/assets/68637256/cf28afb7-6595-4a5d-8188-b318f32b75c9)
-
-## Menu Page
-![image](https://github.com/suryadi445/starter-laravel-10-ui/assets/68637256/26f66367-313a-444f-b2c0-522d11f230e8)
-
-## User Page
-![image](https://github.com/suryadi445/starter-laravel-10-ui/assets/68637256/6beddf3d-748e-4e39-b060-fa01ac50430a)
-
+## Demo Website
+ - [PMII](https://pmii.wkngproject.com)
 
 
 ## Special Thanks to 
