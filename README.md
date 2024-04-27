@@ -81,6 +81,8 @@ Password : password
 - [ArFa - Admin Dashboard](https://github.com/abdulisabdul/arfa)
 - [Livewire](https://laravel-livewire.com/)
 
-
-[![Trakteer Saya](https://trakteer.id/images/mix/navbar-logo.png)](https://trakteer.id/irvanscx/tip)
+## Donasi 
+<a href="https://trakteer.id/irvanscx/tip">
+  <img src="https://trakteer.id/images/mix/navbar-logo.png" alt="Trakteer Saya" width="200"/>
+</a>
 
