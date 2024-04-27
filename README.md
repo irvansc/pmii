@@ -20,8 +20,8 @@ Website ini dibuat dengan Framework Laravel 10, Bootstrap 5, Livewire, Spatie Pe
 
 ## Installation
 
-1. git clone https://github.com/suryadi445/starter-laravel-10-ui.git
-2. cd starter-laravel-10-ui
+1. git clone https://github.com/irvansc/pmii.git
+2. cd pmii
 3. composer install or composer update
 4. npm install
 5. cp .env.example .env
