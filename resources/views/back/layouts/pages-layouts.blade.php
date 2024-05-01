@@ -12,16 +12,16 @@
         crossorigin="anonymous" />
 
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/back/dist/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/back/dist/vendor/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="/back/dist/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
-
+    <link rel="stylesheet" href="/back/dist/vendor/amsify/amsify.suggestags.css">
     <!-- CSS for this page only -->
     <link rel="stylesheet" href="/back/dist/vendor/chart.js/Chart.min.css">
     <!-- End CSS  -->
-<link rel="stylesheet" href="/back/dist/vendor/ijabo/ijabo.min.css">
-<link rel="stylesheet" href="/back/dist/vendor/ijaboCropTool/ijaboCropTool.min.css">
+    <link rel="stylesheet" href="/back/dist/vendor/ijabo/ijabo.min.css">
+    <link rel="stylesheet" href="/back/dist/vendor/ijaboCropTool/ijaboCropTool.min.css">
     <link rel="stylesheet" href="/back/dist/assets/css/style.min.css">
     <link rel="stylesheet" href="/back/dist/assets/css/bootstrap-override.min.css">
     <link rel="stylesheet" id="theme-color" href="/back/dist/assets/css/dark.min.css">
@@ -32,8 +32,8 @@
 <body>
     <div id="app">
         <div class="shadow-header"></div>
-            @include('back.layouts.inc.header')
-            @include('back.layouts.inc.navbar')
+        @include('back.layouts.inc.header')
+        @include('back.layouts.inc.navbar')
 
         <div class="main-content">
             <x-breadcrumb />
@@ -105,7 +105,8 @@
         </div>
 
         <footer>
-            Copyright © 2022 &nbsp <a href="wkngproject.com" target="_blank" class="ml-1"> WK-PROJECT </a> <span> . All rights Reserved</span>
+            Copyright © 2022 &nbsp <a href="wkngproject.com" target="_blank" class="ml-1"> WK-PROJECT </a> <span> . All
+                rights Reserved</span>
         </footer>
         <div class="overlay action-toggle">
         </div>
@@ -114,11 +115,15 @@
     <script src="/back/dist/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/back/dist/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/back/dist/vendor/ijabo/ijabo.min.js"></script>
+    <script src="/back/dist/vendor/jquery-ui-1.13.2/jquery-ui.min.js"></script>
+    <script src="/back/dist/vendor/amsify/jquery.amsify.suggestags.js"></script>
     <script src="/back/dist/vendor/ijaboCropTool/ijaboCropTool.min.js"></script>
     <script src="/back/dist/vendor/ijaboViewer/jquery.ijaboViewer.min.js"></script>
     <script src="/back/dist/vendor/sweetalert2/sweetalert2.all.min.js"></script>
     @stack('scripts')
     @livewireScripts()
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.10/dist/cdn.min.js"></script>
+
     <script src="/back/dist/assets/js/pages/element-ui.min.js"></script>
     <!-- js for this page only -->
     <script src="/back/dist/vendor/chart.js/Chart.min.js"></script>
@@ -128,6 +133,11 @@
     <script src="/back/dist/assets/js/main.min.js"></script>
     <script>
         Main.init()
+    </script>
+    <script>
+        $('input[name="post_tags"]').amsifySuggestags({
+        type: 'amsify'
+    });
     </script>
 </body>
 

@@ -47,18 +47,27 @@ class UserRolePermissionSeeder extends Seeder
                 'username' => 'user',
                 'email' => 'user@gmail.com',
             ], $default_user_value));
+            $alumni = User::create(array_merge([
+                'name' => 'Alumni',
+                'username' => 'alumni',
+                'email' => 'alumni@gmail.com',
+            ], $default_user_value));
 
 
             $role_admin = Role::create(['name' => 'admin']);
             $role_author = Role::create(['name' => 'author']);
             $role_user = Role::create(['name' => 'user']);
             $role_it = Role::create(['name' => 'it']);
+            $role_alumni = Role::create(['name' => 'alumni']);
 
 
             $permission = Permission::create(['name'=>'read role']);
             $permission = Permission::create(['name'=>'create role']);
             $permission = Permission::create(['name'=>'update role']);
             $permission = Permission::create(['name'=>'delete role']);
+
+            $permission = Permission::create(['name'=>'read post']);
+
 
             $role_it->givePermissionTo('read role');
             $role_it->givePermissionTo('create role');
@@ -70,6 +79,7 @@ class UserRolePermissionSeeder extends Seeder
             $it->assignRole('it');
             $author->assignRole('author');
             $user->assignRole('user');
+            $alumni->assignRole('alumni');
 
             $admin = User::where('email', 'admin@gmail.com')->first();
         if ($admin) {

@@ -65,7 +65,7 @@
 
         <div class="row mb-0">
             <div class="col-md-8 offset-md-4">
-                <button type="submit" id="btn-submit" class="btn btn-primary">
+                <button type="submit" id="btn-submit" class="btn btn-login" style="background-color: #010488; color: white">
                     <i class="fa fa-circle-o-notch fa-spin d-none" ></i>
                     <span class="btn-txt">Login</span>
                 </button>

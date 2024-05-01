@@ -12,9 +12,9 @@
             @endif" alt="user" srcset="">
         </a>
         <ul class="dropdown-menu small">
-            <!-- <li class="menu-header">
+            {{-- <!-- <li class="menu-header">
                 <a class="dropdown-item" href="#">Notifikasi</a>
-            </li> -->
+            </li> --> --}}
             <li class="menu-content ps-menu">
                 <a href="{{ route('users.edit', $user->username) }}">
                     <div class="description">

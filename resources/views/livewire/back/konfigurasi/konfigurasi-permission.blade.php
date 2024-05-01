@@ -7,8 +7,11 @@
                     <span wire:loading wire:target="generatePermissions">
                         <i class="fa fa-spinner fa-spin"></i> Loading...
                     </span>
-                    <span wire:loading.remove wire:target="generatePermissions"><i class="ti-loop"></i> Generate Permissions</span>
+                    <span wire:loading.remove wire:target="generatePermissions"><i class="ti-loop"></i> Generate
+                        Permissions</span>
                 </button>
+                <button class="btn mb-2 btn-primary" data-bs-toggle="modal" data-bs-target="#addsatuPermissionModal"
+                    type="button"><i class="ti-plus"></i> Tambah Permissions</button>
             </div>
         </div>
     </div>
@@ -72,34 +75,35 @@
                     <div class="col-md-3 mb-3">
 
                         <input type="text" class="form-control" placeholder="Cari permission..."
-                        wire:model.debounce.300ms="searchTerm">
+                            wire:model.debounce.300ms="searchTerm">
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" wire:model="selectAll" wire:change="toggleSelectAll">
+                                <input class="form-check-input" type="checkbox" wire:model="selectAll"
+                                    wire:change="toggleSelectAll">
                                 <label class="form-check-label fw-bolder" for="checkAll">Pilih Semua</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
 
-                    @forelse($availablePermissions as $permission)
-                    <div class="col-md-4">
+                        @forelse($availablePermissions as $permission)
+                        <div class="col-md-4">
 
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{{ $permission->id }}"
-                            wire:model="selectedPermissions">
-                        <label class="form-check-label">
-                            {{ $permission->name }}
-                        </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{ $permission->id }}"
+                                    wire:model="selectedPermissions">
+                                <label class="form-check-label">
+                                    {{ $permission->name }}
+                                </label>
+                            </div>
+                        </div>
+
+                        @empty
+                        <div>Tidak ada permissions yang ditemukan.</div>
+                        @endforelse
                     </div>
-                </div>
-
-                    @empty
-                    <div>Tidak ada permissions yang ditemukan.</div>
-                    @endforelse
-                </div>
 
                     @endif
                 </div>
@@ -110,6 +114,32 @@
             </div>
         </div>
     </div>
+
+   <!-- Modal Tambah Permission -->
+<div wire:ignore.self class="modal fade" id="addsatuPermissionModal" tabindex="-1" aria-labelledby="addsatuPermissionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addsatuPermissionModalLabel">Tambah Permission Baru</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form wire:submit.prevent="createPermission">
+                    <div class="mb-3">
+                        <label for="permissionName" class="form-label">Nama Permission</label>
+                        <input type="text" class="form-control" id="permissionName" wire:model.defer="permissionName">
+                        @error('permissionName') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 @push('scripts')
@@ -139,5 +169,18 @@
         $(event.detail.modalId).modal('show');
     });
 });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.livewire.on('alert', message => {
+            alert(message);
+        });
+
+        window.addEventListener('close-modal', event => {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addsatuPermissionModal'));
+            modal.hide();
+        });
+    });
 </script>
 @endpush

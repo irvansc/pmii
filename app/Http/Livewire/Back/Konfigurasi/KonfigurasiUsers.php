@@ -22,8 +22,9 @@ class KonfigurasiUsers extends Component
     public $roleFilter = '';
     public $perPage = 10;
     public $selected_user_id;
-    public $name, $email, $username, $role;
 
+    public $name, $email, $username, $role;
+    public $FilterUserActive = '';
     public $checkedUser = [];
     public $selectAll = false;
     public ?int $selectedUser = null;
@@ -237,16 +238,19 @@ class KonfigurasiUsers extends Component
     public function render()
     {
         $query = User::query()
-            ->where('name', 'like', '%' . $this->search . '%')
-            ->whereDoesntHave('roles', function ($query) {
-                $query->where('name', 'admin');
-            });
+        ->where('name', 'like', '%' . $this->search . '%')
+        ->whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'admin');
+        })
+        ->when($this->FilterUserActive !== '', function ($query) {
+            $query->where('isActive', $this->FilterUserActive);
+        });
 
-        if (!empty($this->roleFilter)) {
-            $query->role($this->roleFilter);
-        }
+    if (!empty($this->roleFilter)) {
+        $query->role($this->roleFilter);
+    }
 
-        $users = $query->paginate($this->perPage);
+    $users = $query->paginate($this->perPage);
 
         $roles = Role::where('name', '!=', 'admin')->get();
 

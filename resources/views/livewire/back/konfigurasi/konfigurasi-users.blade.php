@@ -61,6 +61,13 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div>
+                                <select wire:model="FilterUserActive" class="form-select">
+                                    <option value="">Semua User</option>
+                                    <option value="1">User Aktif</option>
+                                    <option value="0">User Tidak Aktif</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,6 +82,7 @@
                                         <th>No</th>
                                         <th>Name</th>
                                         <th>Role</th>
+                                        <th>Active user</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -87,6 +95,10 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->roles->pluck('name')->join(', ') }}</td>
+                                        <td>
+                                            @livewire('back.user-status', ['model' => $user, 'field' => 'isActive'],
+                                            key($user->id))
+                                        </td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="#" wire:click.prevent='editUser({{ $user }})' class="btn btn-sm btn-primary"><i

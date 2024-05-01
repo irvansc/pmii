@@ -49,9 +49,9 @@ class LoginForm extends Component
 
         if (Auth::guard('web')->attempt($creds)) {
             $checkUser = User::where($fieldType, $this->login_id)->first();
-            if ($checkUser->blocked == 1) {
+            if ($checkUser->isActive == 0) {
                 Auth::guard('web')->logout();
-                return redirect()->route('login')->with('fail', 'Your account has been Blocked!');
+                return redirect()->route('login')->with('fail', 'Maaf, akun anda belum di aktifkan oleh admin!');
             } else {
                 if ($this->returnUrl != null) {
                     return redirect()->to($this->returnUrl);

@@ -14,7 +14,7 @@ class KonfigurasiPermission extends Component
     public $selectedPermissions = [];
     public $selectAll = false;
     public $searchTerm = '';
-
+    public $permissionName;
     protected $listeners = [
         'permissionDeleted' => '$refresh',
     ];
@@ -30,6 +30,26 @@ class KonfigurasiPermission extends Component
         } else {
             $this->selectedPermissions = [];
         }
+    }
+    public function createPermission()
+    {
+        $this->validate([
+            'permissionName' => 'required|string|unique:permissions,name'
+        ],[
+            'permissionName.required'=> 'Nama Permission tidak boleh kosong',
+            'permissionName.string'=> 'Nama Permission tidak boleh angka',
+            'permissionName.unique'=> 'Nama Permission sudah ada'
+        ]);
+
+        Permission::create(
+            [
+                'name' => $this->permissionName,
+                'guard_name' => 'web'
+            ]
+        );
+        flash()->addSuccess('Permission berhasil ditambahkan.');
+        $this->dispatchBrowserEvent('close-modal');
+        $this->reset('permissionName');
     }
     public function showModal($roleId)
     {

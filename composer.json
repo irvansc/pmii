@@ -6,7 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "cviebrock/eloquent-sluggable": "^10.0",
+        "cyrildewit/eloquent-viewable": "^7.0",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "2.7",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
@@ -14,6 +17,7 @@
         "livewire/livewire": "2.12",
         "php-flasher/flasher-laravel": "^1.15",
         "rap2hpoutre/laravel-log-viewer": "^2.4",
+        "spatie/laravel-medialibrary": "^10.15",
         "spatie/laravel-permission": "^6.7"
     },
     "require-dev": {
