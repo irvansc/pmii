@@ -1,18 +1,31 @@
 <div>
-
+    <div class="app-container container-xxl">
     <div class="row mt-3">
         <div class="col-md-6 mb-2">
             <div class="card">
                 <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
-                        <h4>Categories</h4>
-                        <li class="nav-item ms-auto">
-                            <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal"
-                                data-bs-target="#categories_modal">
-                                Add Category
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="card-title">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative my-1 me-5">
+                           Categories
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                    <div class="card-toolbar">
+                        <!--begin::Button-->
+                        <button type="button" class="btn btn-light-primary" data-bs-toggle="modal"
+                        data-bs-target="#categories_modal">
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
+                        <span class="svg-icon svg-icon-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor"></rect>
+                                <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor"></rect>
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->Add Category</button>
+                        <!--end::Button-->
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -55,15 +68,28 @@
         <div class="col-md-6 mb-2">
             <div class="card">
                 <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
-                        <h4>SubCategories</h4>
-                        <li class="nav-item ms-auto">
-                            <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal"
-                                data-bs-target="#subcategories_modal">
-                                Add SubCategory
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="card-title">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative my-1 me-5">
+                            SubCategories
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                    <div class="card-toolbar">
+                        <!--begin::Button-->
+                        <button type="button" class="btn btn-light-primary" data-bs-toggle="modal"
+                        data-bs-target="#subcategories_modal">
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
+                        <span class="svg-icon svg-icon-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor"></rect>
+                                <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor"></rect>
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon--> Add SubCategory</button>
+                        <!--end::Button-->
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -182,4 +208,5 @@
     </div>
 
 
+</div>
 </div>

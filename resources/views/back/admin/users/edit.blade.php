@@ -1,108 +1,91 @@
 @extends('back.layouts.pages-layouts')
 
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Edit User')
-
-@section('content')
-<style>
-    .profile-image-wrapper {
-        position: relative;
-        display: inline-block;
-        text-align: center;
-        /* Tambahkan ini untuk memusatkan ikon di bawah gambar */
-    }
-
-    .profile-image {
-        display: block;
-        border-radius: 50%;
-    }
-
-    .edit-icon {
-        position: absolute;
-        bottom: -30px;
-        /* Sesuaikan ini untuk menggeser ikon tepat di bawah gambar */
-        left: 50%;
-        /* Menempatkan ikon di tengah secara horizontal */
-        transform: translateX(-50%);
-        /* Mengimbangi posisi ikon agar tepat di tengah */
-    }
-</style>
-<div class="container rounded  mt-5 mb-5">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-3 border-right">
-                    @livewire('back.user-profile-header')
-                </div>
-                <div class="col-md-9 border-right">
-                    <div class="p-3 py-5">
-                        <div class="card-header">
-                            <h4>PERSONAL DETAILS</h4>
-                        </div>
-                        <div class="card-body">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="pills-home-tab2" data-bs-toggle="pill"
-                                        data-bs-target="#profile" type="button" role="tab"
-                                        aria-controls="pills-home" aria-selected="true"><i class="ti-user"></i>
-                                        PROFILE</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-profile-tab2" data-bs-toggle="pill"
-                                        data-bs-target="#password" type="button" role="tab"
-                                        aria-controls="pills-profile" aria-selected="false" tabindex="-1"><i
-                                            class="ti-key"></i>
-                                        PASSWORD</button>
-                                </li>
-
-                            </ul>
-                            <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="pills-home-tab">
-                                    @livewire('back.user-profile')
-                                </div>
-
-                                <div class="tab-pane fade" id="password" role="tabpanel"
-                                    aria-labelledby="pills-profile-tab">
-                                    @livewire('back.user-password')
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@section('tollbar')
+     <!--begin::Page title-->
+ <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+    <!--begin::Title-->
+    <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Personal Details Edit</h1>
+    <!--end::Title-->
 </div>
+@endsection
+@section('content')
+
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container container-xxl">
+        <!--begin::Navbar-->
+        @livewire('back.user-profile-header')
+        <!--end::Navbar-->
+        <!--begin::Nav items-->
+        <div id="kt_user_profile_nav" class="rounded bg-gray-200 d-flex flex-stack flex-wrap mb-9 p-2"
+            data-kt-page-scroll-position="400" data-kt-sticky="true" data-kt-sticky-name="sticky-profile-navs"
+            data-kt-sticky-offset="{default: false, lg: '200px'}"
+            data-kt-sticky-width="{target: '#kt_user_profile_panel'}" data-kt-sticky-left="auto"
+            data-kt-sticky-top="70px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95" style="">
+            <!--begin::Nav-->
+            <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
+
+                <!--begin::Nav item-->
+                <li class="nav-item my-1" role="personal details">
+                    <a class="btn btn-sm btn-color-gray-600 bg-state-body btn-active-color-gray-800 fw-bolder fw-bold fs-6 fs-lg-base nav-link px-3 px-lg-4 mx-1 active"
+                        data-bs-toggle="tab" href="#personal_details" aria-selected="true" role="tab">Personal
+                        Details</a>
+                </li>
+                <li class="nav-item my-1" role="sosial_media">
+                    <a class="btn btn-sm btn-color-gray-600 bg-state-body btn-active-color-gray-800 fw-bolder fw-bold fs-6 fs-lg-base nav-link px-3 px-lg-4 mx-1"
+                        data-bs-toggle="tab" href="#sosial_media" aria-selected="true" role="tab">Sosial Media</a>
+                </li>
+                <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item my-1">
+                    <a class="btn btn-sm btn-color-gray-600 bg-state-body btn-active-color-gray-800 fw-bolder fw-bold fs-6 fs-lg-base nav-link px-3 px-lg-4 mx-1"
+                        data-bs-toggle="tab" href="#password" aria-selected="true" role="tab">Password</a>
+                </li>
+                <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item my-1">
+                    <a class="btn btn-sm btn-color-gray-600 bg-state-body btn-active-color-gray-800 fw-bolder fw-bold fs-6 fs-lg-base nav-link px-3 px-lg-4 mx-1"
+                        data-bs-toggle="tab" href="#pendidikan" aria-selected="true" role="tab">Pendidikan</a>
+                </li>
+                <!--end::Nav item-->
+            </ul>
+            <!--end::Nav-->
+        </div>
+        <!--end::Nav items-->
+        <!--begin::Basic info-->
+        <div class="card mb-5 mb-xl-10">
+            <!--begin:::Tab content-->
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade active show" id="personal_details" role="tabpanel">
+                    <!--begin::Form-->
+
+                    @livewire('back.user-profile')
+
+                    <!--end::Form-->
+                </div>
+                <div class="tab-pane fade" id="sosial_media" role="tabpanel">
+                    <!--begin::Form-->
+                    @livewire('back.user-sosmed')
+                    <!--end::Form-->
+                </div>
+                <div class="tab-pane fade" id="password" role="tabpanel">
+                    <!--begin::Form-->
+                    @livewire('back.user-password')
+                    <!--end::Form-->
+                </div>
+                <div class="tab-pane fade" id="pendidikan" role="tabpanel">
+                    <!--begin::Form-->
+                    @livewire('back.user-pendidikan')
+                    <!--end::Form-->
+                </div>
+
+            </div>
+            <!--end:::Tab content-->
+        </div>
+        <!--end::Basic info-->
+
+    </div>
+    <!--end::Content container-->
 
 @endsection
-@push('scripts')
-<script>
-    var flash = {
-    addSuccess: function(message) {
-        alert('Success: ' + message);
-    },
-    addError: function(message) {
-        alert('Error: ' + message);
-    }
-};
-    $('#changeUserProfilePicture').ijaboCropTool({
-          preview : '',
-          setRatio:1,
-          allowedExtensions: ['jpg', 'jpeg','png'],
-          buttonsText:['CROP','QUIT'],
-          buttonsColor:['#30bf7d','#ee5155', -15],
-          processUrl:'{{ route("change-profile-picture") }}',
-          withCSRF:['_token','{{ csrf_token() }}'],
-          onSuccess:function(message, element, status){
-            livewire.emit('updateUserProfileHeader');
-            livewire.emit('updateTopHeader');
-            // flash.addSuccess(message);
-            toastr.success(message);
-          },
-          onError:function(message, element, status){
-                        toastr.error(message);
-            // flash.addError(message);
-          }
-       });
-</script>
-@endpush
+

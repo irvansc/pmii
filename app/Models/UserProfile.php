@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserProfile extends Model
 {
     use HasFactory;
-
+    use Loggable;
     protected $guarded = [''];
 
     public function user()
@@ -24,4 +26,8 @@ class UserProfile extends Model
         return asset('/back/img/user/person.png');
        }
     }
+    // public function getTanggalLahirAttribute(){
+    //     return Carbon::parse($this->attributes['tanggal_lahir'])
+    //     ->translatedFormat('l, d F Y');
+    // }
 }

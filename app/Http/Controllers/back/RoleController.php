@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers\back;
 
-use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
 
-
-    public function __construct(){
-        $this->middleware('can:create role');
-
-
-    }
     /**
      * Display a listing of the resource.
      */
@@ -43,9 +38,10 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Role $role)
     {
-        //
+        $users = $role->users; // Pastikan relasi 'users' sudah didefinisikan di model Role
+        return view('back.admin.konfigurasi.role-show', compact('role', 'users'));
     }
 
     /**

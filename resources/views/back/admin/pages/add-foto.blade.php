@@ -1,8 +1,15 @@
 @extends('back.layouts.pages-layouts')
 
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'add foto')
+@section('tollbar')
+<div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+    <!--begin::Title-->
+    <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Add Foto</h1>
+    <!--end::Title-->
+</div>
+@endsection
 @section('content')
-
+<div class="app-container container-xxl">
 <div class="col-md-8">
     <div class="card">
         @if ($message = Session::get('success'))
@@ -19,8 +26,14 @@
         </div>
         @endif
         <div class="card-header">
-            <div class="header-title">
-                <h3>Add Foto</h3>
+            <div class="card-header">
+                <div class="card-title">
+                    <!--begin::Search-->
+                    <div class="d-flex align-items-center position-relative my-1 me-5">
+                        Add foto
+                    </div>
+                    <!--end::Search-->
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -67,6 +80,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 
 @endsection

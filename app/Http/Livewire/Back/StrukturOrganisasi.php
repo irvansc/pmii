@@ -27,7 +27,7 @@ class StrukturOrganisasi extends Component
     public $search = '';
     public $checkedStu = [];
     public ?int $selectedStu = null;
-
+    public $userOrganizations;
     public $listeners = [
         'resetModalForm',
         'deleteStuAction',
@@ -48,6 +48,7 @@ class StrukturOrganisasi extends Component
     {
         $this->resetPage();
     }
+
 
     public function updatingSearch()
     {
@@ -114,6 +115,7 @@ class StrukturOrganisasi extends Component
         $saved = $stu->save();
         if ($saved) {
             $this->resetModalForm();
+            $this->emit('reloadPage');
             $this->dispatchBrowserEvent('hideStuModal');
             flash()->addSuccess('Data has been successfuly added.');
         } else {

@@ -8,7 +8,7 @@ use Livewire\Component;
 class SettingAbout extends Component
 {
 
-    public $about, $title, $description, $tujuan;
+    public $about, $title, $description, $tujuan, $url_video;
 
     public function mount()
     {
@@ -16,6 +16,7 @@ class SettingAbout extends Component
         $this->title = $this->about->title;
         $this->description = $this->about->description;
         $this->tujuan = $this->about->tujuan;
+        $this->url_video = $this->about->url_video;
 
     }
 
@@ -30,7 +31,8 @@ class SettingAbout extends Component
         $update = $this->about->update([
             "title"=> $this->title,
             "description"=> $this->description,
-            "tujuan" => $this->tujuan
+            "tujuan" => $this->tujuan,
+            "url_video" => $this->url_video
         ]);
 
         if ($update) {

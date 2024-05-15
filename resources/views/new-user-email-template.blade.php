@@ -228,7 +228,9 @@
                                                                 style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
                                                                 <p style="line-height: 140%;">Hai.. {{$name}}</p>
                                                                 <p style="line-height: 140%;">Selamat Anda telah
-                                                                    ditambahkan oleh Admin sebagai penulis di web {{ webInfo()->web_name }}</p>
+                                                                    ditambahkan oleh Admin sebagai
+                                                                        {{ $role }}
+                                                                     di web {{ webInfo()->web_name }}</p>
                                                                 <p style="line-height: 140%;">Untuk memulai, silahkan
                                                                     login dengan akun dibawah ini, jangan lupa segera
                                                                     ganti password nya ya :</p>

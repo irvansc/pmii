@@ -1,7 +1,9 @@
 <div>
+    <div class="app-container container-xxl">
+
     <div class="row">
         <div class="row justify-content-between g-2 mb-3">
-            <div class=" col-md-4">
+            <div class="col-md-4">
                 <a data-bs-toggle="modal" data-bs-target="#stu_modal" class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -17,7 +19,7 @@
 
             <div class=" col-md-4 ">
                 <div class="btn-group dropdown">
-                    <button type="button" class="btn  btn-light dropdown-toggle waves-effect" data-bs-toggle="dropdown"
+                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Bulk Action <span class="caret"></span>
                     </button>
@@ -34,17 +36,15 @@
         <div class="col-md-10 ">
             <div class="card">
                 <div class="card-header">
-                    <div class="d-flex">
-                        <div class="text-muted">
-                            <div class="mx-2 d-inline-block">
-                                <div class="card-title">STRUKTUR ORGANISASI</div>
-                            </div>
+                    <div class="card-title">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative my-1 me-5">
+                            STRUKTUR ORGANISASI
                         </div>
-                        <div class="ms-auto text-muted">
-                            <div class="ms-2 d-inline-block">
-                                <input type="search" class="form-control" placeholder="Search" wire:model.debounce.300ms="search">
-                            </div>
-                        </div>
+                        <!--end::Search-->
+                    </div>
+                    <div class="card-toolbar">
+                        <input type="search" class="form-control" placeholder="Search" wire:model.debounce.300ms="search">
                     </div>
                 </div>
                 <div class="card-body ">
@@ -272,6 +272,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 
     {{-- Modals --}}
 
@@ -350,4 +352,12 @@
         })
 
     </script>
+
+<script>
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('reloadPage', function () {
+            location.reload(); // Mereload halaman setelah event dipicu
+        });
+    });
+</script>
     @endpush

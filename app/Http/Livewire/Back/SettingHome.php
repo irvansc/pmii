@@ -71,7 +71,7 @@ class SettingHome extends Component
         $path = "images/image/";
         $filename = $image->getClientOriginalName();
         $new_filename = time() . '_' . $filename; // Menambahkan underscore untuk kejelasan
-        $img = ImageManagerStatic::make($image)->encode('jpg');
+        $img = ImageManagerStatic::make($image)->encode('png');
 
         // Hapus file gambar lama jika ada
         if ($oldImagePath && Storage::disk('public')->exists($oldImagePath)) {

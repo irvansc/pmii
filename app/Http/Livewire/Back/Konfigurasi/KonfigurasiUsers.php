@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Models\ButtonPendaftaranAnggota;
 
 class KonfigurasiUsers extends Component
 {
@@ -23,11 +24,12 @@ class KonfigurasiUsers extends Component
     public $perPage = 10;
     public $selected_user_id;
 
-    public $name, $email, $username, $role;
+    public $name, $email, $username, $role, $jenis_kelamin;
     public $FilterUserActive = '';
     public $checkedUser = [];
     public $selectAll = false;
     public ?int $selectedUser = null;
+    public $pendaftaranAktif;
     protected $listeners = [
         'resetInputFields',
         'deleteUserAction',
@@ -45,8 +47,23 @@ class KonfigurasiUsers extends Component
     public function mount()
     {
         $this->resetPage();
+        $button = ButtonPendaftaranAnggota::first();
+        $this->pendaftaranAktif = $button ? $button->isActive : false;
     }
+    public function togglePendaftaran()
+    {
+        $button = ButtonPendaftaranAnggota::firstOrCreate();
+        $button->isActive = !$button->isActive;
+        $button->save();
 
+        if ($button->isActive) {
+            flash()->addSuccess('Pendaftaran anggota berhasil diaktifkan.');
+        } else {
+            flash()->addSuccess('Pendaftaran anggota berhasil dinonaktifkan.');
+        }
+
+        $this->pendaftaranAktif = $button->isActive;
+    }
     public function updatingSearch()
     {
         $this->resetPage();
@@ -58,6 +75,7 @@ class KonfigurasiUsers extends Component
         $this->email = null;
         $this->username = null;
         $this->role = null;
+        $this->jenis_kelamin = null;
     }
     public function addAuthor()
     {
@@ -67,6 +85,7 @@ class KonfigurasiUsers extends Component
                 'email' => 'required|email|unique:users,email',
                 'username' => 'required|unique:users,username|min:6|max:20',
                 'role' => 'required',
+                'jenis_kelamin' => 'required',
             ],
             [
                 'role.required' => 'Pilih role',
@@ -78,6 +97,7 @@ class KonfigurasiUsers extends Component
                 'username.max' => 'Username minimal 20 karakter',
                 'email.email' => 'Masukan email valid.',
                 'email.unique' => 'Email sudah terdaftar.',
+                'jenis_kelamin.required' => 'Jenis kelamin wajib diisi',
             ]
         );
 
@@ -94,7 +114,9 @@ class KonfigurasiUsers extends Component
                 $author->email_verified_at = now();
                 $author->save();
                 $author->assignRole($this->role);
-
+                $author->profile()->create([
+                    'jenis_kelamin' => $this->jenis_kelamin // Pastikan Anda memiliki properti ini di komponen Livewire
+                ]);
                 $author->load('roles');
 
                 $roleName = $author->roles->isNotEmpty() ? $author->roles->first()->name : 'No Role Assigned';
@@ -105,7 +127,8 @@ class KonfigurasiUsers extends Component
                     'email' => $this->email,
                     'password' => $default_password,
                     'role' => $roleName,
-                    'url' => route('login')
+                    'url' => route('login'),
+                    'jenis_kelamin' => $this->jenis_kelamin
                 ];
                 $author_email = $this->email;
                 $author_name = $this->name;
@@ -238,19 +261,19 @@ class KonfigurasiUsers extends Component
     public function render()
     {
         $query = User::query()
-        ->where('name', 'like', '%' . $this->search . '%')
-        ->whereDoesntHave('roles', function ($query) {
-            $query->where('name', 'admin');
-        })
-        ->when($this->FilterUserActive !== '', function ($query) {
-            $query->where('isActive', $this->FilterUserActive);
-        });
+            ->where('name', 'like', '%' . $this->search . '%')
+            ->whereDoesntHave('roles', function ($query) {
+                $query->where('name', 'admin');
+            })
+            ->when($this->FilterUserActive !== '', function ($query) {
+                $query->where('isActive', $this->FilterUserActive);
+            });
 
-    if (!empty($this->roleFilter)) {
-        $query->role($this->roleFilter);
-    }
+        if (!empty($this->roleFilter)) {
+            $query->role($this->roleFilter);
+        }
 
-    $users = $query->paginate($this->perPage);
+        $users = $query->paginate($this->perPage);
 
         $roles = Role::where('name', '!=', 'admin')->get();
 

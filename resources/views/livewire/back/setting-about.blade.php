@@ -1,4 +1,5 @@
 <div>
+    <div class="app-container container-xxl">
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -13,6 +14,13 @@
                             <label for="title">Title</label>
                             <input type="text" class="form-control" wire:model='title'>
                             <span class="text-danger">@error('title')
+                                {!!$message!!}
+                                @enderror</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="url_video">Url Video <small>(Opsional)</small></label>
+                            <input type="text" class="form-control" wire:model='url_video'>
+                            <span class="text-danger">@error('url_video')
                                 {!!$message!!}
                                 @enderror</span>
                         </div>
@@ -61,6 +69,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @push('scripts')
 <script src="/back/dist/vendor/ckeditor/build/ckeditor.js"></script>

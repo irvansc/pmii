@@ -1,14 +1,22 @@
 @extends('back.layouts.pages-layouts')
 
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'permission')
-@section('content')
-<div class="col-md-8">
-    <div class="card">
-        <div class="card-body">
-            @livewire('back.konfigurasi.konfigurasi-permission')
-        </div>
-    </div>
+@section('tollbar')
+<div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+    <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Permissions List</h1>
 </div>
+@endsection
+@section('content')
+<div id="kt_app_content_container" class="app-container container-xxl">
+    <!--begin::Card-->
+    <div class="col-md-8">
+        @livewire('back.konfigurasi.konfigurasi-permission')
+
+
+    </div>
+    <!--end::Card-->
+</div>
+
 
 @endsection
 @push('scripts')
@@ -51,8 +59,3 @@
 
 </script>
 @endpush
-
-
-
-
-

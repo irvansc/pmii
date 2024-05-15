@@ -2,7 +2,10 @@
 
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'settings')
 @section('content')
-@livewire('back.setting')
+<div class="app-container container-fluid">
+
+    @livewire('back.setting')
+</div>
 @endsection
 
 @push('scripts')

@@ -1,49 +1,58 @@
 @php
     $url = $_SERVER['REQUEST_URI'];
-    $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
-    $url = strtok($url, '?');
-
+    $url = strtok($url, '?'); // Menghilangkan query string jika ada
     $pathSegments = explode('/', trim($url, '/'));
-
-    echo '<nav aria-label="breadcrumb">';
-    echo '<ol class="breadcrumb">';
-
-    $currentSegment = '';
     $currentPath = '';
-
-    if ($pathSegments[0] != '') {
-        echo '<li class="breadcrumb-item"><a href="' . url('/') . '">Home</a></li>';
-    }
-
-    foreach ($pathSegments as $key => $segment) {
-        if ($segment == 'home' || $segment == 'dashboard') {
-            continue;
-        }
-
-        if (!is_numeric($segment)) {
-            $currentPath .= '/' . $segment;
-
-            if ($currentSegment == $segment) {
-                continue;
-            }
-
-            if ($key == count($pathSegments) - 1) {
-                echo '<li class="breadcrumb-item active">' . ucfirst($segment) . '</li>';
-            } else {
-                if ($key > 0) {
-                    $fullUrl = url('/') . '/' . $segment;
-                } else {
-                    $fullUrl = url('/') . '/' . $segment;
-                }
-
-                echo '<li class="breadcrumb-item active">' . ucfirst($segment) . '</li>';
-            }
-
-            $currentSegment = $segment;
-        }
-    }
-
-    echo '</ol>';
-    echo '</nav>';
-
+    $previousSegmentDisplayed = false; // Untuk mengecek apakah segmen sebelumnya ditampilkan
 @endphp
+<style>
+    .breadcrumb {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+    color: #6c757d;
+
+}
+
+.breadcrumb-item.active a {
+    color: #007bff;
+
+}
+
+.breadcrumb-item:not(:last-child)::after {
+    content: ">";
+    color: #6c757d; /* Sesuaikan warna sesuai dengan tema Anda */
+}
+</style>
+    <ul class="breadcrumb">
+        @if (!empty($pathSegments))
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+            @php $previousSegmentDisplayed = true; @endphp
+        @endif
+
+        @foreach ($pathSegments as $key => $segment)
+            @if ($segment == 'home' || $segment == 'dashboard')
+                @continue
+            @endif
+
+            @php
+                $currentPath .= '/' . $segment;
+                $isActive = $key == count($pathSegments) - 1;
+            @endphp
+
+            @if (!is_numeric($segment))
+                @if ($previousSegmentDisplayed)
+                <li class="breadcrumb-separator"></li>
+                @endif
+                <li class="breadcrumb-item {{ $isActive ? 'active' : '' }}">
+                    <a href="{{ url($currentPath) }}">{{ ucfirst($segment) }}</a>
+                </li>
+                @php $previousSegmentDisplayed = true; @endphp
+            @endif
+        @endforeach
+    </ul>

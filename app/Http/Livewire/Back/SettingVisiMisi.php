@@ -9,7 +9,7 @@ use Livewire\Component;
 class SettingVisiMisi extends Component
 {
 
-    public $visi, $desc, $name;
+    public $visi, $desc, $name, $icon, $color;
     public $selected_misi_id;
     public $updateMisiMode = false;
 
@@ -40,11 +40,15 @@ class SettingVisiMisi extends Component
         ]);
         $category = new Misi();
         $category->name = $this->name;
+        $category->icon = $this->icon;
+        $category->color = $this->color;
         $saved = $category->save();
 
         if ($saved) {
             $this->dispatchBrowserEvent('hideMisiModal');
             $this->name = null;
+            $this->icon = null;
+            $this->color = null;
            flash()->addSuccess('New Misi has been successfuly added.');
         } else {
            flash()->addError('Something went wrong!');
@@ -56,6 +60,8 @@ class SettingVisiMisi extends Component
         $misi = Misi::findOrFail($id);
         $this->selected_misi_id = $misi->id;
         $this->name = $misi->name;
+        $this->icon = $misi->icon;
+        $this->color = $misi->color;
         $this->updateMisiMode = true;
         $this->resetErrorBag();
         $this->dispatchBrowserEvent('showmisiModal');
@@ -69,6 +75,8 @@ class SettingVisiMisi extends Component
 
             $misi = Misi::findOrFail($this->selected_misi_id);
             $misi->name = $this->name;
+            $misi->icon = $this->icon;
+            $misi->color = $this->color;
             $updated = $misi->save();
             if ($updated) {
                 $this->dispatchBrowserEvent('hideMisiModal');

@@ -53,6 +53,7 @@ class Post extends Model implements Viewable, HasMedia
         return $this->belongsTo(User::class,'author_id','id');
     }
 
+
     public function getFeatured_imageAttribute($value)
     {
        if ($value) {

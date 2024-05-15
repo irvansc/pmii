@@ -10,16 +10,14 @@ use Illuminate\Support\Facades\File;
 class UserController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('can:create role');
-    // }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('back.admin.users.index');
+
+        return view('back.users.index');
     }
 
     /**
@@ -43,7 +41,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::with('profile')->where('username', $id)->first();
+return view('back.users.show', compact('user'));
     }
 
     /**

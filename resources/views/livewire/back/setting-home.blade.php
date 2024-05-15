@@ -1,10 +1,19 @@
 <div>
+    <div class="app-container container-xxl">
+
     <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Setting Home</div>
+                    <div class="card-title">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative my-1 me-5">
+                            Setting Home
+                        </div>
+                        <!--end::Search-->
+                    </div>
                 </div>
+
                 <div class="card-body">
 
                     <form action="" method="post" wire:submit.prevent='saveSetting()'>
@@ -37,7 +46,7 @@
                             @if (is_object($img) && method_exists($img, 'temporaryUrl'))
                                 <img id="preview" src="{{ $img->temporaryUrl() }}" alt="Preview Image" style="max-width: 300px; margin-top: 20px;">
                             @else
-                                <img id="preview" src="{{ asset('storage/' . $img) }}" alt="Preview Image" style="max-width: 300px; margin-top: 20px;">
+                                <img id="preview" src="{{ $img }}" alt="Preview Image" style="max-width: 300px; margin-top: 20px;">
                             @endif
                         </div>
                     @endif
@@ -59,4 +68,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

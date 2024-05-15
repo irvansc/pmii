@@ -1,28 +1,16 @@
 <div>
-    @if (Session::get('fail'))
-    <div class="alert alert-danger" role="alert">
-        {{ Session::get('fail') }}
-    </div>
-    @endif
-    @if (Session::get('success'))
-    <div class="alert alert-success" role="alert">
-        {!! Session::get('success') !!}
-    </div>
-    @endif
-    <form method="POST" wire:submit.prevent='LoginHandler()' id="registrationForm">
-        {{-- @csrf --}}
+
+    {{-- <form >
+        @csrf
         <div class="row mb-3">
             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Or Username') }}</label>
 
             <div class="col-md-6">
-                <input id="login_id" type="login_id" class="form-control @error('login_id') is-invalid @enderror"
-                    name="login_id" value="{{ old('login_id') }}" required autocomplete="login_id" autofocus wire:model="login_id">
+                <input id="login_id" type="login_id" class="form-control "
+                    name="login_id" value="{{ old('login_id') }}" required autocomplete="login_id" autofocus
+                    wire:model="login_id">
 
-                @error('login_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+
             </div>
         </div>
 
@@ -31,12 +19,18 @@
 
             <div class="col-md-6">
                 <div class="input-group input-group-flat">
-                    <input id="password_input" type="password" class="form-control" placeholder="Password" autocomplete="off"
-                        wire:model="password">
+                    <input id="password_input" type="password" class="form-control" placeholder="Password"
+                        autocomplete="off" wire:model="password">
                     <span class="input-group-text">
                         <a id="toggle_button" onclick="toggle()">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
-                                </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <circle cx="12" cy="12" r="2" />
+                                <path
+                                    d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
+                            </svg>
                         </a>
                     </span>
 
@@ -65,8 +59,9 @@
 
         <div class="row mb-0">
             <div class="col-md-8 offset-md-4">
-                <button type="submit" id="btn-submit" class="btn btn-login" style="background-color: #010488; color: white">
-                    <i class="fa fa-circle-o-notch fa-spin d-none" ></i>
+                <button type="submit" id="btn-submit" class="btn btn-login"
+                    style="background-color: #010488; color: white">
+                    <i class="fa fa-circle-o-notch fa-spin d-none"></i>
                     <span class="btn-txt">Login</span>
                 </button>
 
@@ -77,27 +72,103 @@
                 @endif
             </div>
         </div>
+    </form> --}}
+
+    <!--begin::Form-->
+    <form class="form w-100"  method="POST" wire:submit.prevent='LoginHandler()' id="registrationForm"
+        >
+        <!--begin::Heading-->
+        <div class="text-center mb-11">
+            <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
+
+        </div>
+        <!--end::Login options-->
+        <!--begin::Separator-->
+        <div class="separator separator-content my-14">
+            <span class="w-125px text-gray-500 fw-semibold fs-7">Username or Email</span>
+        </div>
+        @if (Session::get('fail'))
+        <div class="alert alert-danger" role="alert">
+            {{ Session::get('fail') }}
+        </div>
+        @endif
+        @if (Session::get('sukses'))
+        <div class="alert alert-success" role="alert">
+            {!! Session::get('sukses') !!}
+        </div>
+        @endif
+        <!--end::Separator-->
+        <!--begin::Input group=-->
+        <div class="fv-row mb-8">
+            <!--begin::Email-->
+            <input type="text" placeholder="Email or Username" wire:model="login_id" name="login_id" autocomplete="off"
+                class="form-control bg-transparent" />
+            <!--end::Email-->
+        </div>
+        @error('login_id')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+        <!--end::Input group=-->
+        <div class="fv-row mb-3" data-kt-password-meter="true">
+            <!--begin::Password-->
+            <div class="position-relative mb-3">
+                <input class="form-control bg-transparent" wire:model="password" type="password" placeholder="Password" name="password" autocomplete="off" />
+                <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
+                    <i class="bi bi-eye-slash fs-2"></i>
+                    <i class="bi bi-eye fs-2 d-none"></i>
+                </span>
+            </div>
+                @error('password')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                @enderror
+            <!--end::Password-->
+        </div>
+        <!--end::Input group=-->
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
+            <div></div>
+            @if (Route::has('password.request'))
+                <a class="link-primary" href="{{ route('password.request') }}">
+                    Forgot Password ?
+                </a>
+            @endif
+
+        </div>
+        <!--end::Wrapper-->
+        <!--begin::Submit button-->
+        <div class="d-grid mb-10">
+
+            <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">
+                <span wire:loading wire:target="LoginHandler" class="spinner-border spinner-border-sm align-middle ms-2" role="status" aria-hidden="true"></span>
+                <span wire:loading.remove wire:target="LoginHandler">Sign In</span>
+                <span wire:loading wire:target="LoginHandler">Please wait...</span>
+            </button>
+        </div>
+        <!--end::Submit button-->
+        <!--begin::Sign up-->
+        <div class="text-gray-500 text-center fw-semibold fs-6">Belum punya akun?
+            <a href="{{ route('register') }}" class="link-primary">Sign up</a>
+        </div>
+        <!--end::Sign up-->
     </form>
+    <!--end::Form-->
 </div>
 @push('sc')
 <script>
-        function toggle() {
-    let input_toggle = document.getElementById('toggle_button')
-    let password_input = document.getElementById('password_input')
+    function togglePasswordVisibility(buttonId, inputId) {
+        let button = document.getElementById(buttonId);
+        let input = document.getElementById(inputId);
 
-    if (password_input.type === 'password') {
-        password_input.type = 'text'
-        toggle_button.innerHTML = `
-
-	<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="3" y1="3" x2="21" y2="21" /><path d="M10.584 10.587a2 2 0 0 0 2.828 2.83" /><path d="M9.363 5.365a9.466 9.466 0 0 1 2.637 -.365c4 0 7.333 2.333 10 7c-.778 1.361 -1.612 2.524 -2.503 3.488m-2.14 1.861c-1.631 1.1 -3.415 1.651 -5.357 1.651c-4 0 -7.333 -2.333 -10 -7c1.369 -2.395 2.913 -4.175 4.632 -5.341" /></svg>`
-    } else {
-        password_input.type = 'password'
-        toggle_button.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
-                                </svg>
-        `
+        if (input.type === 'password') {
+            input.type = 'text';
+            button.innerHTML = '<i class="bi bi-eye" aria-hidden="true"></i>';
+        } else {
+            input.type = 'password';
+            button.innerHTML = '<i class="bi bi-eye-slash" aria-hidden="true"></i>';
+        }
     }
-}
 </script>
 <script>
     $(document).ready(function() {

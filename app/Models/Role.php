@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Role extends ModelsRole
 {
     use HasFactory;
+    protected $guarded = [];
 
     public function getCreatedAttAttribute(){
         return Carbon::parse($this->attributes['created_at'])

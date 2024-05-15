@@ -1,19 +1,32 @@
 <div>
+    <div class="app-container container-xxl">
     <div class="row mt-3">
         <div class="col-md-4 mb-2">
             <div class="card card-box">
                 <div class="card-header">
-                    <div class="clearfix">
-                        <div class="pull-right">
-                            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#album_modal" type="button">
-                                Add Album
-                            </a>
+                    <div class="card-title">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative my-1 me-5">
+                            Albums
                         </div>
-
+                        <!--end::Search-->
+                    </div>
+                    <div class="card-toolbar">
+                        <!--begin::Button-->
+                        <button type="button" class="btn btn-light-primary" data-bs-toggle="modal"
+                        data-bs-target="#album_modal">
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
+                        <span class="svg-icon svg-icon-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor"></rect>
+                                <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor"></rect>
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->Add Album</button>
+                        <!--end::Button-->
                     </div>
                 </div>
-
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-vcenter card-table table-striped">
@@ -99,7 +112,7 @@
                             <div class="card card-sm">
                                 <a href="storage/images/album/foto/{{ $foto->img }}" class="d-block"
                                     data-id="{{ $foto->id }}" data-fancybox="gallery" data-caption="{{ $foto->title }}">
-                                    <img src="storage/images/album/foto/{{ $foto->img }}" class="card-img-top">
+                                    <img src="storage/images/album/foto/thumbnails/thumb_{{ $foto->img }}" class="card-img-top">
                                 </a>
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
@@ -241,6 +254,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @push('stylesheets')
 <link rel="stylesheet" href="/back/dist/vendor/fancybox/dist/jquery.fancybox.min.css" />

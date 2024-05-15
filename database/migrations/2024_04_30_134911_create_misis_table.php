@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('misis', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('icon')->nullable();
+            $table->string('color')->nullable();
               $table->integer('ordering')->default(10000);
             $table->timestamps();
         });

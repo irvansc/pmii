@@ -87,6 +87,35 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $telp
+ * @property string|null $url
+ * @property string $pesan
+ * @property int $isActive
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact wherePesan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact whereTelp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contact whereUrl($value)
+ */
+	class Contact extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $mail_mailer
  * @property string $mail_host
  * @property string $mail_port
@@ -248,13 +277,17 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
+ * @property string|null $icon
+ * @property string|null $color
  * @property int $ordering
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Misi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Misi newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Misi query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Misi whereColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Misi whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Misi whereIcon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Misi whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Misi whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Misi whereOrdering($value)

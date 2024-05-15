@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
+            <ul class="nav nav-tabs card-header-tabs mt-3" data-bs-toggle="tabs">
                 <li class="nav-item">
                     <a href="#tab1" class="nav-link active" data-bs-toggle="tab">General Settings</a>
                 </li>
