@@ -37,15 +37,19 @@ Website ini dibuat dengan Framework Laravel 10, Bootstrap 5, Livewire, Spatie Pe
 Username : admin@gmail.com
 Password : password
 
-2. Author : 
+2. It : 
+Username : it@gmail.com
+Password : password
+
+3. Author : 
 Username : author@gmail.com
 Password : password
 
-3. Alumni
+4. Alumni
 Username : alumni@gmail.com
 Password : password
 
-4. User
+5. User/Anggota
 Username : user@gmail.com
 Password : password
 
