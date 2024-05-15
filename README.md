@@ -58,10 +58,9 @@ Password : password
 - [Laravel UI](https://github.com/laravel/ui)
 - [Laravel Spatie](https://spatie.be/docs/laravel-permission/v6/introduction)
 - [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
-- [ArFa - Admin Dashboard](https://github.com/abdulisabdul/arfa)
 - [Livewire](https://laravel-livewire.com/)
 
-## Donasi 
+## Buat Ngopi 😊
 <a href="https://trakteer.id/irvanscx/tip">
   <img src="https://trakteer.id/images/mix/navbar-logo.png" alt="Trakteer Saya" width="200"/>
 </a>
