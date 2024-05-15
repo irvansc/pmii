@@ -275,7 +275,7 @@ class KonfigurasiUsers extends Component
 
         $users = $query->paginate($this->perPage);
 
-        $roles = Role::where('name', '!=', 'admin')->get();
+        $roles = Role::get();
 
         return view('livewire.back.konfigurasi.konfigurasi-users', [
             'users' => $users,

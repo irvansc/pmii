@@ -141,7 +141,7 @@
                         <div class="post-item clearfix">
                             <img src="/storage/images/post_images/thumbnails/thumb_{{$item->featured_image}}"
                                 alt="{{$item->post_title}}">
-                            <h4><a href="b{{ route('read_post', $item->slug) }}">{{$item->post_title}}</a></h4>
+                            <h4><a href="{{ route('read_post', $item->slug) }}">{{$item->post_title}}</a></h4>
                             <time datetime="2020-01-01">{{ date_formatter($item->created_at) }}</time>
                         </div>
                         @endforeach
@@ -172,17 +172,3 @@
 </section>
 <!-- End Blog Single Section -->
 @endsection
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const btn = document.getElementById('toggleCommentForm');
-        const form = document.getElementById('commentForm');
-
-        btn.addEventListener('click', function () {
-            // Toggle class 'open'
-            form.classList.toggle('open');
-        });
-    });
-</script>
-@endpush

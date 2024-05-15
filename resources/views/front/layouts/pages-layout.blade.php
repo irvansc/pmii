@@ -27,7 +27,8 @@
 
     <!-- Template Main CSS File -->
     <link href="/front/assets/css/style.css" rel="stylesheet">
-    <link href="/front/assets/css/custom.css" rel="stylesheet">
+    {{--
+    <link href="/front/assets/css/custom.css" rel="stylesheet"> --}}
     @livewireStyles()
     @stack('style')
 
@@ -66,10 +67,10 @@
                             <li><a href="{{ route('team.anggota') }}">Anggota</a></li>
                             <li><a href="{{ route('team.alumni') }}">Alumni</a></li>
                             <li><a href="{{ route('team.pendaftaran.alumni') }}">Pendaftaran Alumni</a></li>
-                                @php
-                                    $pendaftaranAktif = DB::table('button_pendaftaran_anggotas')->select('isActive')
-                                    ->first()->isActive ?? false;
-                                @endphp
+                            @php
+                            $pendaftaranAktif = DB::table('button_pendaftaran_anggotas')->select('isActive')
+                            ->first()->isActive ?? false;
+                            @endphp
                             @if ($pendaftaranAktif)
                             <li><a href="{{ route('team.pendaftaran.anggota') }}">Pendaftaran Anggota</a></li>
                             @endif
@@ -139,7 +140,8 @@
                             <li><i class="bx bx-chevron-right"></i> <a href="/mission">Mision</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="{{ route('galery') }}">Galery</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="/privacy">Privacy policy</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="/sitemap">sitemap</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('sitemap') }}"
+                                    target="_blank">sitemap</a></li>
                         </ul>
                     </div>
 
@@ -185,8 +187,9 @@
         </div>
     </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="javascript:void(0);" id="back-to-top" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
@@ -203,6 +206,12 @@
     <script src="/front/assets/js/main.js"></script>
     @livewireScripts()
     @stack('scripts')
+    <script>
+        document.getElementById('back-to-top').addEventListener('click', function(event) {
+    event.preventDefault();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+});
+    </script>
 </body>
 
 </html>

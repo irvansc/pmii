@@ -38,11 +38,11 @@ class HomePage extends Component
         $roleAnggota = Role::where('name', 'user')->first();
 
         if ($roleAlumni) {
-            $this->totalAlumni = $roleAlumni->users()->count();
-            $this->alumniMale = $roleAlumni->users()->whereHas('profile', function ($query) {
+            $this->totalAlumni = $roleAlumni->users()->where('isActive', true)->count();
+            $this->alumniMale = $roleAlumni->users()->where('isActive', true)->whereHas('profile', function ($query) {
                 $query->where('jenis_kelamin', 'L');
             })->count();
-            $this->alumniFemale = $roleAlumni->users()->whereHas('profile', function ($query) {
+            $this->alumniFemale = $roleAlumni->users()->where('isActive', true)->whereHas('profile', function ($query) {
                 $query->where('jenis_kelamin', 'P');
             })->count();
         } else {
@@ -52,11 +52,11 @@ class HomePage extends Component
         }
 
         if ($roleAnggota) {
-            $this->totalAnggota = $roleAnggota->users()->count();
-            $this->anggotaMale = $roleAnggota->users()->whereHas('profile', function ($query) {
+            $this->totalAnggota = $roleAnggota->users()->where('isActive', true)->count();
+            $this->anggotaMale = $roleAnggota->users()->where('isActive', true)->whereHas('profile', function ($query) {
                 $query->where('jenis_kelamin', 'L');
             })->count();
-            $this->anggotaFemale = $roleAnggota->users()->whereHas('profile', function ($query) {
+            $this->anggotaFemale = $roleAnggota->users()->where('isActive', true)->whereHas('profile', function ($query) {
                 $query->where('jenis_kelamin', 'P');
             })->count();
         } else {

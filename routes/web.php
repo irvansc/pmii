@@ -13,6 +13,7 @@ use App\Http\Controllers\Back\AlumniController;
 use App\Http\Controllers\back\CategoryController;
 use App\Http\Controllers\back\UserListController;
 use App\Http\Controllers\front\ArticleController;
+use App\Http\Controllers\front\SitemapController;
 use App\Http\Controllers\back\PermissionController;
 use App\Http\Controllers\front\FiledownloadController;
 
@@ -102,6 +103,6 @@ Route::prefix('team')->name('team.')->group(function () {
     Route::view('/pendaftaran/anggota', 'front.pages.pendaftaran.anggota')->name('pendaftaran.anggota');
     Route::view('/pendaftaran/alumni', 'front.pages.pendaftaran.alumni')->name('pendaftaran.alumni');
 });
-
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 
